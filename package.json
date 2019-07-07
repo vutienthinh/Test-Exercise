@@ -1,0 +1,26 @@
+{
+  "name": "test-exercise",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "nyc mocha",
+    "question1": "node src/test_exercise1/app.js",
+    "question3": "node src/test_exercise3/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vutienthinh/Test-Exercise.git"
+  },
+  "author": "thinh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vutienthinh/Test-Exercise/issues"
+  },
+  "homepage": "https://github.com/vutienthinh/Test-Exercise#readme",
+  "devDependencies": {
+    "enum": "^2.5.0",
+    "mocha": "^6.1.4",
+    "nyc": "^14.1.1"
+  }
+}
