@@ -23,7 +23,7 @@ describe('Array', function() {
       ]
       const text = "key1=value1;key2=value2\nkey3=value3;key4=value4";
       var result = util.loadData(text);
-      assert.equal(result, expect);
+      assert.deepEqual(result, expect);
     });
   });
 });

@@ -7,37 +7,41 @@ const manipulateData = (() => {
 
     const storeData = (data) => {
         if(!isArray(data)) return ERROR;
-        let pairObjectStr = data.map((item) => handlePairObject(item));
-        return insertSeparation(pairObjectStr, SEPARATION_NEWLINE);
+        const pairObjectStr = data.map((pairObj) => convertPairObjectToStr(pairObj));
+        return makeStrFromArr(pairObjectStr, SEPARATION_NEWLINE);
     }
-    const handlePairObject = (obj) => {
+    const convertPairObjectToStr = (obj) => {
         if(!obj) return ERROR;
-        let transformedStr = Object.entries(obj).reduce((accumulator, curItem) => {
-            let convertedAccumulator = insertSeparation(accumulator, SEPARATION_EQUAL);
-            let convertedCurItem = insertSeparation(curItem, SEPARATION_EQUAL);
-            return `${convertedAccumulator}${SEPARATION_SEMICOMMA}${convertedCurItem}`;
+        const transformedStr = Object.entries(obj).reduce((accumulator, curItem) => {
+            const convertedAccStr = makeStrFromArr(accumulator, SEPARATION_EQUAL);
+            const convertedCurItemStr = makeStrFromArr(curItem, SEPARATION_EQUAL);
+            return `${convertedAccStr}${SEPARATION_SEMICOMMA}${convertedCurItemStr}`;
         });
         return transformedStr;
     }
 
-    const insertSeparation = ((str , separation) => str.join(separation));
+    const makeStrFromArr = ((array , separation) => array.join(separation));
 
-    const removeSeparation = ((str , separation) => str.split(separation));
+    const makeArrFromStr = ((str , separation) => str.split(separation));
 
     const isArray = ((array) => array && Array.isArray(array));
     
     const loadData = (text) => {
         if(!text) return ERROR;
-        let removedNewLineArr = removeSeparation(text, SEPARATION_NEWLINE);
-        return removedNewLineArr.map((item) => {
-            let removedArr = removeSeparation(item, SEPARATION_SEMICOMMA);
-            let resultObj = removedArr.map((elm) => {
-                let hashArray = removeSeparation(elm, SEPARATION_EQUAL);
-                let key = hashArray[0];
-                let value = hashArray[1];
+        // convert string to array of pair object
+        const pairObjects = makeArrFromStr(text, SEPARATION_NEWLINE);
+        // loop through all pair object
+        return pairObjects.map((item) => {
+            // separate element of pair object
+            const pairObjectsElements = makeArrFromStr(item, SEPARATION_SEMICOMMA);
+            const proceededArr = pairObjectsElements.map((elm) => {
+                const hashArray = makeArrFromStr(elm, SEPARATION_EQUAL);
+                const key = hashArray[0];
+                const value = hashArray[1];
                 return {[key]: value};
-            })
-            return resultObj;
+            });
+            const mergedObj = Object.assign(...proceededArr);
+            return mergedObj;
         })
     }
 
