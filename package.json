@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "nyc mocha",
+    "test-coverage": "nyc mocha",
+    "test-question1": "mocha test/test",
+    "test-question3": "mocha test/test3",
     "question1": "node src/test_exercise1/app.js",
     "question3": "node src/test_exercise3/app.js"
   },

@@ -5,7 +5,7 @@ class Discount {
         this._netAmount = netAmount
     }
     calculate() {
-        console.log(1);
+        
     }
 
     set netAmount(newNetAmount) {
