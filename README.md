@@ -3,7 +3,7 @@
 *Environment:
 
 Nodejs
-Mochajs
+Jestjs
 Istanbuljs ( Test coverage )
 Enum
 
