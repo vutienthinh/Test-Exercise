@@ -1,6 +1,4 @@
-// import { storeData } from '../src/test_exercise1/app';
-var assert = require('assert');
-var util = require('../src/test_exercise1/app');
+const util = require('../src/test_exercise1/app');
 describe('Test1', function() {
   describe('storeData()', function() {
     it('store successfully', function() {
@@ -9,9 +7,9 @@ describe('Test1', function() {
           key1: 'value1', key2: "value2" },
         { key3: "value3", key4: "value4" }
       ]
-      const expect = "key1=value1;key2=value2\nkey3=value3;key4=value4";
+      const expectedStr = "key1=value1;key2=value2\nkey3=value3;key4=value4";
       var result = util.storeData(array);
-      assert.equal(result, expect);
+      expect(result).toBe(expectedStr);
     });
     it('fail to store data', function() {
       const array = [
@@ -19,31 +17,31 @@ describe('Test1', function() {
           keyA: 'value1', keyB: "value2" },
         { key3: "value3", key4: "value4" }
       ]
-      const expect = "key1=value1;key2=value2\nkey3=value3;key4=value4";
+      const expectedStr = "key1=value1;key2=value2\nkey3=value3;key4=value4";
       var result = util.storeData(array);
-      assert.notEqual(result, expect);
+      expect(result).not.toBe(expectedStr);
     });
   });
   describe('loadData()', function() {
     it('load data successfully', function() {
-      const expect = [
+      const expectedArr = [
         {
           key1: 'value1', key2: "value2" },
         { key3: "value3", key4: "value4" }
       ]
       const text = "key1=value1;key2=value2\nkey3=value3;key4=value4";
       var result = util.loadData(text);
-      assert.deepEqual(result, expect);
+      expect(result).toEqual(expectedArr);
     });
     it('fail to load data', function() {
-      const expect = [
+      const expectedArr = [
         {
           key1: 'value1', key2: "value2" },
         { key3: "value3", key4: "value4" }
       ]
       const text = "key1=valueA;key2=valueB\nkey3=value3;key4=value4";
       var result = util.loadData(text);
-      assert.notDeepEqual(result, expect);
+      expect(result).not.toEqual(expectedArr);
     });
   });
 });

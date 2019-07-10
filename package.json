@@ -3,10 +3,13 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "jest": {
+    "verbose": true
+  },
   "scripts": {
-    "test-coverage": "nyc mocha",
-    "test-question1": "mocha test/test",
-    "test-question3": "mocha test/test3",
+    "test-coverage": "jest --coverage",
+    "test-question1": "jest test/question1.test.js",
+    "test-question3": "jest test/question3.test.js",
     "question1": "node src/test_exercise1/app.js",
     "question3": "node src/test_exercise3/app.js"
   },
@@ -22,7 +25,7 @@
   "homepage": "https://github.com/vutienthinh/Test-Exercise#readme",
   "devDependencies": {
     "enum": "^2.5.0",
-    "mocha": "^6.1.4",
+    "jest": "^24.8.0",
     "nyc": "^14.1.1"
   }
 }
